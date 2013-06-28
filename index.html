@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Psychic meme</title>
+
+  <meta name="description" content="Psychic meme">
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#">Psychic meme</a>
+      <ul class="nav">
+        <li class="active"><a href="#">Something awesome</a></li>
+        <li><a href="#">Even more awesome</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="js-app-wrapper" class="row-fluid">
+    <div class="span4 full-height">
+      <div class="textarea-wrapper full-height">
+        <textarea id="markdown">Dillinger
+=========
+
+Dillinger is a cloud-enabled HTML5 Markdown editor.
+
+  - Type some Markdown text in the left window
+  - See the HTML in the right
+  - Magic
+
+Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site] [1]:
+
+> The overriding design goal for Markdown's
+> formatting syntax is to make it as readable
+> as possible. The idea is that a
+> Markdown-formatted document should be
+> publishable as-is, as plain text, without
+> looking like it's been marked up with tags
+> or formatting instructions.
+
+This text your see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
+
+Version
+-
+
+2.0
+
+Tech
+-----------
+
+Dillinger uses a number of open source projects to work properly:
+
+* [Ace Editor] - awesome web-based text editor
+* [Showdown] - a port of Markdown to JavaScript
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [keymaster.js] - awesome keyboard handler lib by [@thomasfuchs]
+* [jQuery] - duh
+
+Installation
+--------------
+
+```sh
+git clone [git-repo-url] dillinger
+cd dillinger
+npm i -d
+mkdir -p public/files/{md,html,pdf}
+node app
+```
+
+
+License
+-
+
+MIT
+
+*Free Software, Fuck Yeah!*
+
+  [john gruber]: http://daringfireball.net/
+  [@thomasfuchs]: http://twitter.com/thomasfuchs
+  [1]: http://daringfireball.net/projects/markdown/
+  [showdown]: https://github.com/coreyti/showdown
+  [ace editor]: http://ace.ajax.org
+  [node.js]: http://nodejs.org
+  [Twitter Bootstrap]: http://twitter.github.com/bootstrap/
+  [keymaster.js]: https://github.com/madrobby/keymaster
+  [jQuery]: http://jquery.com
+  [@tjholowaychuk]: http://twitter.com/tjholowaychuk
+  [express]: http://expressjs.com
+</textarea>
+      </div>
+    </div>
+
+    <div class="span4 full-height">
+      <div class="textarea-wrapper full-height add-scroll" id="html"></div>
+    </div>
+
+    <div class="span4 full-height">
+      <div class="textarea-wrapper full-height">
+        <textarea id="rendered-html"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/libs/jquery-2.0.2.min.js"></script>
+  <script src="assets/js/libs/bootstrap.min.js"></script>
+  <script src="assets/js/libs/showdown.js"></script>
+
+  <script src="assets/js/app/main.js"></script>
+</body>
+</html>
