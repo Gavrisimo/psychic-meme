@@ -15,7 +15,6 @@ module.exports = function(grunt) {
       },
       vendor: {
         src: [
-          'assets/js/libs/jquery-2.0.2.min.js',
           'assets/js/libs/bootstrap.min.js',
           'assets/js/libs/showdown.js',
         ],
