@@ -56,10 +56,18 @@
     </div>
   </div>
 
+  <!-- Load vendor files -->
   <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-  <script src="assets/js/psychic-meme-libs.js"></script>
+  <script src="assets/js/libs/bootstrap.min.js"></script>
+  <script src="assets/js/libs/showdown.js"></script>
 
-  <script src="assets/js/app/main.js"></script>
+  <!-- Load application files -->
+  <script src="assets/js/app/namespace.js"></script>
   <script src="assets/js/app/document-manager.js"></script>
+  <script src="assets/js/app/app.js"></script>
+
+  <script>
+    PSYM.app.init();
+  </script>
 </body>
 </html>
