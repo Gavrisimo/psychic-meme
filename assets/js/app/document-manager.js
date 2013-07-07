@@ -1,9 +1,9 @@
-var documentManager = {
+PSYM.documentManager = {
   converter: new Showdown.converter(),
 
   getDummyMarkdown: function() {
     $.get('assets/dummy-markdown.txt', function( data ) {
-      documentManager.convert( data );
+      PSYM.documentManager.convert( data );
     });
   },
 
@@ -39,18 +39,18 @@ var documentManager = {
   }
 };
 
-documentManager.getDummyMarkdown();
-documentManager.loadAllDocuments();
+PSYM.documentManager.getDummyMarkdown();
+PSYM.documentManager.loadAllDocuments();
 
 app.textAreas.markdown.on({
   keyup: function() {
-    documentManager.convert( $(this).val() );
+    PSYM.documentManager.convert( $(this).val() );
   }
 });
 
 $('#js-save-document').on({
   click: function() {
-    documentManager.saveDocument();
+    PSYM.documentManager.saveDocument();
 
     return false;
   }
@@ -58,7 +58,7 @@ $('#js-save-document').on({
 
 $('body').on({
   click: function() {
-    documentManager.loadDocument( $(this).data('key') );
+    PSYM.documentManager.loadDocument( $(this).data('key') );
 
     return false;
   }
@@ -68,7 +68,7 @@ $('#js-clear-localstorage').on({
   click: function() {
     localStorage.clear();
 
-    documentManager.loadAllDocuments();
+    PSYM.documentManager.loadAllDocuments();
 
     return false;
   }

@@ -8,6 +8,7 @@ module.exports = function(grunt) {
       },
       app: {
         src: [
+          'assets/js/app/namespace.js',
           'assets/js/app/main.js',
           'assets/js/app/document-manager.js'
         ],

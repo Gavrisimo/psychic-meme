@@ -1,4 +1,4 @@
-var app = {
+PSYM.app = {
 
   textAreas: {
     markdown: $('#markdown'),
@@ -11,10 +11,10 @@ var app = {
   }
 };
 
-app.updateSize();
+PSYM.app.updateSize();
 
 $(window).on({
   resize: function() {
-    app.updateSize();
+    PSYM.app.updateSize();
   }
 });
