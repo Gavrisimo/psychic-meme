@@ -1,47 +1,52 @@
-PSYM.documentManager = {
+PSYM.documentManager = (function() {
+  'use strict';
 
-  init: function() {
-    PSYM.documentManager.getDummyMarkdown();
+  var DOC_NAME_MSG = 'How are you going to name this document?';
 
-    PSYM.documentManager.loadAllDocuments();
+  return {
+    init: function() {
+      PSYM.documentManager.getDummyMarkdown();
 
-    PSYM.documentManager.converter = new Showdown.converter();
+      PSYM.documentManager.loadAllDocuments();
 
-    PSYM.documentManager.convertedMarkdown = '';
-  },
+      PSYM.documentManager.converter = new Showdown.converter();
 
-  getDummyMarkdown: function() {
-    $.get('assets/dummy-markdown.txt', function( data ) {
-      PSYM.documentManager.convert( data );
-    });
-  },
+      PSYM.documentManager.convertedMarkdown = '';
+    },
 
-  convert: function( val ) {
-    PSYM.app.textAreas.markdown.val( val );
+    getDummyMarkdown: function() {
+      $.get('assets/dummy-markdown.txt', function( data ) {
+        PSYM.documentManager.convert( data );
+      });
+    },
 
-    PSYM.documentManager.convertedMarkdown = PSYM.documentManager.converter.makeHtml( val );
+    convert: function( val ) {
+      PSYM.app.textAreas.markdown.val( val );
 
-    PSYM.app.textAreas.html.html( PSYM.documentManager.convertedMarkdown );
-    PSYM.app.textAreas.renderedHtml.val( PSYM.documentManager.convertedMarkdown );
-  },
+      PSYM.documentManager.convertedMarkdown = PSYM.documentManager.converter.makeHtml( val );
 
-  loadAllDocuments: function() {
-    var $localDocuments = $('#js-local-documents');
+      PSYM.app.textAreas.html.html( PSYM.documentManager.convertedMarkdown );
+      PSYM.app.textAreas.renderedHtml.val( PSYM.documentManager.convertedMarkdown );
+    },
 
-    $localDocuments.empty();
+    loadAllDocuments: function() {
+      var $localDocuments = $('#js-local-documents');
 
-    for ( var key in localStorage ) {
-      $localDocuments.append( '<li><a href="#" class="js-load-document" data-key="' + key + '"><i class="icon-folder-open"></i> ' + key + '</a></li>' );
+      $localDocuments.empty();
+
+      for ( var key in localStorage ) {
+        $localDocuments.append( '<li><a href="#" class="js-load-document" data-key="' + key + '"><i class="icon-folder-open"></i> ' + key + '</a></li>' );
+      }
+    },
+
+    loadDocument: function( key ) {
+      this.convert( localStorage.getItem( key ) );
+    },
+
+    saveDocument: function() {
+      localStorage.setItem( prompt( DOC_NAME_MSG ), PSYM.app.textAreas.markdown.val() );
+
+      this.loadAllDocuments();
     }
-  },
-
-  loadDocument: function( key ) {
-    this.convert( localStorage.getItem( key ) );
-  },
-
-  saveDocument: function() {
-    localStorage.setItem( prompt( 'How are you going to name this document?' ), PSYM.app.textAreas.markdown.val() );
-
-    this.loadAllDocuments();
-  }
-};
+  };
+}());
