@@ -1,5 +1,14 @@
 PSYM.documentManager = {
-  converter: new Showdown.converter(),
+
+  init: function() {
+    PSYM.documentManager.getDummyMarkdown();
+
+    PSYM.documentManager.loadAllDocuments();
+
+    PSYM.documentManager.converter = new Showdown.converter();
+
+    PSYM.documentManager.convertedMarkdown = '';
+  },
 
   getDummyMarkdown: function() {
     $.get('assets/dummy-markdown.txt', function( data ) {
@@ -8,15 +17,13 @@ PSYM.documentManager = {
   },
 
   convert: function( val ) {
-    app.textAreas.markdown.val( val );
+    PSYM.app.textAreas.markdown.val( val );
 
-    this.convertedMarkdown = this.converter.makeHtml( val );
+    PSYM.documentManager.convertedMarkdown = PSYM.documentManager.converter.makeHtml( val );
 
-    app.textAreas.html.html( this.convertedMarkdown );
-    app.textAreas.renderedHtml.val( this.convertedMarkdown );
+    PSYM.app.textAreas.html.html( PSYM.documentManager.convertedMarkdown );
+    PSYM.app.textAreas.renderedHtml.val( PSYM.documentManager.convertedMarkdown );
   },
-
-  convertedMarkdown: '',
 
   loadAllDocuments: function() {
     var $localDocuments = $('#js-local-documents');
@@ -33,43 +40,8 @@ PSYM.documentManager = {
   },
 
   saveDocument: function() {
-    localStorage.setItem( prompt( 'How are you going to name this document?' ), app.textAreas.markdown.val() );
+    localStorage.setItem( prompt( 'How are you going to name this document?' ), PSYM.app.textAreas.markdown.val() );
 
     this.loadAllDocuments();
   }
 };
-
-PSYM.documentManager.getDummyMarkdown();
-PSYM.documentManager.loadAllDocuments();
-
-app.textAreas.markdown.on({
-  keyup: function() {
-    PSYM.documentManager.convert( $(this).val() );
-  }
-});
-
-$('#js-save-document').on({
-  click: function() {
-    PSYM.documentManager.saveDocument();
-
-    return false;
-  }
-});
-
-$('body').on({
-  click: function() {
-    PSYM.documentManager.loadDocument( $(this).data('key') );
-
-    return false;
-  }
-}, '.js-load-document');
-
-$('#js-clear-localstorage').on({
-  click: function() {
-    localStorage.clear();
-
-    PSYM.documentManager.loadAllDocuments();
-
-    return false;
-  }
-});

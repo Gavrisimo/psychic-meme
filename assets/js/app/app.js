@@ -1,5 +1,49 @@
 PSYM.app = {
 
+  init: function() {
+    PSYM.documentManager.init();
+
+    PSYM.app.updateSize();
+
+    $(window).on({
+      resize: function() {
+        PSYM.app.updateSize();
+      }
+    });
+
+    PSYM.app.textAreas.markdown.on({
+      keyup: function() {
+        PSYM.documentManager.convert( $(this).val() );
+      }
+    });
+
+    $('#js-save-document').on({
+      click: function() {
+        PSYM.documentManager.saveDocument();
+
+        return false;
+      }
+    });
+
+    $('body').on({
+      click: function() {
+        PSYM.documentManager.loadDocument( $(this).data('key') );
+
+        return false;
+      }
+    }, '.js-load-document');
+
+    $('#js-clear-localstorage').on({
+      click: function() {
+        localStorage.clear();
+
+        PSYM.documentManager.loadAllDocuments();
+
+        return false;
+      }
+    });
+  },
+
   textAreas: {
     markdown: $('#markdown'),
     html: $('#html'),
@@ -10,11 +54,3 @@ PSYM.app = {
     $('#js-app-wrapper').height( $(window).height() - 62 );
   }
 };
-
-PSYM.app.updateSize();
-
-$(window).on({
-  resize: function() {
-    PSYM.app.updateSize();
-  }
-});
