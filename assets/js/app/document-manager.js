@@ -5,13 +5,13 @@ PSYM.documentManager = (function() {
 
   return {
     init: function() {
-      PSYM.documentManager.getDummyMarkdown();
+      this.getDummyMarkdown();
 
-      PSYM.documentManager.loadAllDocuments();
+      this.loadAllDocuments();
 
-      PSYM.documentManager.converter = new Showdown.converter();
+      this.converter = new Showdown.converter();
 
-      PSYM.documentManager.convertedMarkdown = '';
+      this.convertedMarkdown = '';
     },
 
     getDummyMarkdown: function() {
@@ -23,7 +23,7 @@ PSYM.documentManager = (function() {
     convert: function( val ) {
       PSYM.app.textAreas.markdown.val( val );
 
-      PSYM.documentManager.convertedMarkdown = PSYM.documentManager.converter.makeHtml( val );
+      this.convertedMarkdown = this.converter.makeHtml( val );
 
       PSYM.app.textAreas.html.html( PSYM.documentManager.convertedMarkdown );
       PSYM.app.textAreas.renderedHtml.val( PSYM.documentManager.convertedMarkdown );
