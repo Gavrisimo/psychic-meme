@@ -3,6 +3,8 @@ PSYM.app = (function() {
 
   return {
     init: function() {
+      PSYM.templateManager.init();
+
       PSYM.documentManager.init();
 
       PSYM.app.updateSize();
