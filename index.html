@@ -56,6 +56,14 @@
     </div>
   </div>
 
+  <script type="template" id="dropdownItem">
+    <li>
+      <a href="#" class="js-load-document" data-key="<%= documentName %>">
+        <i class="icon-folder-open"></i> <%= documentName %>
+      </a>
+    </li>
+  </script>
+
   <!-- Load vendor files -->
   <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   <script src="assets/js/libs/lodash.min.js"></script>
@@ -64,7 +72,7 @@
 
   <!-- Load application files -->
   <script src="assets/js/app/namespace.js"></script>
-  <script src="assets/js/app/tempate-manager.js"></script>
+  <script src="assets/js/app/tempates.js"></script>
   <script src="assets/js/app/document-manager.js"></script>
   <script src="assets/js/app/app.js"></script>
 

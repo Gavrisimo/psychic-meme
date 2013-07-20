@@ -35,7 +35,7 @@ PSYM.documentManager = (function() {
       $localDocuments.empty();
 
       for ( var key in localStorage ) {
-        $localDocuments.append( PSYM.templateManager.localDocumentsDropdown({ 'documentName': key }) );
+        $localDocuments.append( PSYM.templates.dropdownItem({ 'documentName': key }) );
       }
     },
 
